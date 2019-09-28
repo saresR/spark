@@ -1,6 +1,6 @@
 //jshint esversion:6
 
-var imgSourceHover = false;
+let imgSourceHover = false;
 
 function start() {
   $("h1").fadeOut(1).fadeIn(1500);
@@ -57,7 +57,7 @@ const invisible4 = $(".scrolly-mark-2");
 
 
 const nav = $(".nav");
-var menuIsOut = false;
+let menuIsOut = false;
 
 
 function toggleMenu(){
@@ -82,43 +82,55 @@ function hideMenu(){
 
 
 
-var scrollyOut = false;
-
-
-$(".circle-2").hide(0);
+let scrollyOut = false;
 
 
 
-const triangle2 = $(".triangle-2");
-const triangle3 = $(".triangle-3");
+
+
+// const triangle2 = $(".triangle-2");
+// const triangle3 = $(".triangle-3");
+//
+// let offset3 = triangle2.offset().top +100;
+// let offset4 = triangle3.offset().top -100;
 
 
 $(window).scroll(function(){
-  position = $(window).scrollTop();
-  circle2();
+  let position = $(window).scrollTop();
+  circle2(position);
 });
 
 // && position >= offset2
 
-function circle2(){
-  var offset = invisible3.offset().top;
-  var offset2 = invisible4.offset().top;
-  var offset3 = triangle2.offset().top +100;
-  var offset4 = triangle3.offset().top -100;
-  if (position >= offset && position <= offset2 && scrollyOut === false) {
-    $(".circle-2").fadeIn(1000);
-    scrollyOut = true;
-  } else if (position < offset && scrollyOut === true){
-    $(".circle-2").fadeOut(1000);
-    scrollyOut = false;
-  } else if (position> offset2){
-    $(".circle-2").fadeOut(1000);
-    scrollyOut=false;
+const circle = $(".circle-2");
+
+function circle2(position){
+  let offset = invisible3.offset().top;
+  let offset2 = invisible4.offset().top;
+  let newVar = 0.25*(offset2 - offset);
+  if (position > offset && position < offset2){
+    if (position-offset<= newVar){
+      let newVar2 = (position-offset)/newVar;
+      circle.css("opacity", newVar2);
+    } else if (offset2 - position <= newVar){
+      let newVar2 = (offset2-position)/newVar;
+      circle.css("opacity", newVar2);
+    } else {
+      circle.css("opacity", "1");
+    }
+  } else {
+    circle.css("opacity", "0");
   }
-  if (position<offset3 || position>offset4){
-    $(".circle-2").hide(1000);
-    scrollyOut = false;
-  }
+  // if (position >= offset && position <= offset2 && scrollyOut === false) {
+  //   $(".circle-2").fadeIn(1000);
+  //   scrollyOut = true;
+  // } else if (position < offset && scrollyOut === true){
+  //   $(".circle-2").fadeOut(1000);
+  //   scrollyOut = false;
+  // } else if (position> offset2){
+  //   $(".circle-2").fadeOut(1000);
+  //   scrollyOut=false;
+  // }
 }
 
 
@@ -137,17 +149,13 @@ $(window).resize(function(){
   }
 });
 
-function changeCaptionSize(){
-
-}
-
 
 
 
 // fade in elements
-/*var animateHTML = function() {
-  var elems;
-  var windowHeight;
+/*let animateHTML = function() {
+  let elems;
+  let windowHeight;
   function init() {
     elems = $('.hidden');
     windowHeight = window.innerHeight;
@@ -159,8 +167,8 @@ function changeCaptionSize(){
     $(window).resize(init);
   }
   function checkPosition() {
-    for (var i = 0; i < elems.length; i++) {
-      var positionFromTop = elems[i].getBoundingClientRect().top;
+    for (let i = 0; i < elems.length; i++) {
+      let positionFromTop = elems[i].getBoundingClientRect().top;
       if (positionFromTop - windowHeight <= 0 && elems[i].classList.contains("hiding")===true) {
         // elems[i].className = elems[i].className.replace(
         //   'hiding',

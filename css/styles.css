@@ -162,7 +162,7 @@ img {
   width: 2px;
   height: 2px;
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 0;
 }
 
@@ -171,7 +171,7 @@ img {
   width: 2px;
   height: 2px;
   position: absolute;
-  top: 70%;
+  top: 90%;
   left: 0;
 }
 
@@ -195,7 +195,7 @@ img {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
-  z-index: 2;
+  z-index: 3;
   box-shadow: 0 0 10px #a83914;
 }
 
@@ -216,7 +216,7 @@ img {
   top: -20px;
   background-color: #fa6b3c;
   box-shadow: 0 0 5px #a83914;
-  z-index: 1;
+  z-index: 2;
 }
 
 .nav-clicked {
@@ -282,11 +282,11 @@ img {
 
 
 .top-link {
-  margin: 10px 10px;
-  width: 50%;
+  margin: 0 10px;
   text-decoration: none;
   color: #6d2811;
   font-size: 1.2rem;
+  display: inline-block;
 }
 
 .top-link:hover {
@@ -379,6 +379,7 @@ img {
   left: 0;
 }
 .scrolly-img {
+  width: 100%;
   position: fixed;
   height: 100vh;
   object-fit: cover;
@@ -423,7 +424,7 @@ img {
 }
 
 .food-1 {
-  width: 20vw;
+  width: 100%;
   height: 20vw;
   border-color: #f7931e;
   display: inline-block;
@@ -437,7 +438,7 @@ img {
 
 .caption-2 {
   display: inline-block;
-  width: 20vw;
+  width: 100%;
   margin: 0;
   margin-top: 0.25rem;
   font-size: 1.2rem;
@@ -460,6 +461,7 @@ img {
   top: 5%;
   border-radius: 50%;
   box-shadow: 0 0 10px #a83914;
+  opacity: 0;
 }
 
 .img-credit {
@@ -482,7 +484,22 @@ img {
 }
 
 
+@media (max-width: 700px) {
+  .food-1-div {
+    width: 55vw;
+    text-align: center;
+  }
 
+  .food-1, .food-2 {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .caption-2 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+}
 
 
 @media (max-width: 600px) {
@@ -490,19 +507,50 @@ img {
   .top-link {
     font-size: 1.5rem;
     display: block;
-    clear: both;
+    text-align: left;
+    position: relative;
   }
 
   .nav {
-    display: block;
-    clear: both;
-    position: static; /*we need a fixey*/
+    position: fixed;
     text-align: left;
     margin: 0;
-    margin-left: 10%;
-    width: 100%;
-    padding: 20px;
+    padding: 0;
+    border-radius: 50%;
+    right: -10rem;
+    top: -10rem;
+  }
 
+  .top-link:nth-of-type(2) {
+    left: -25px;
+  }
+
+  .top-link:nth-of-type(3) {
+    left: -20px;
+  }
+
+  .top-link:nth-of-type(4) {
+    left: -5px;
+  }
+
+  .nav-clicked {
+    animation-name: billy;
+    animation-duration: 0.5s;
+    right: -1rem;
+    top: -1rem;
+    padding: 70px;
+  }
+
+  @keyframes billy {
+    0% {right: -10rem; top: -10rem; padding: 0}
+  }
+
+  .nav-clicked-2 {
+    animation-name: freddy;
+  }
+
+  @keyframes freddy {
+    0% {right: -1rem; top: -1rem; padding: 70px}
   }
 
   .img-container {
@@ -512,20 +560,38 @@ img {
     max-width: 55%;
   }
 
+  .spark-circle {
+    margin-bottom: 30px;
+  }
 }
 
 
 
-/**fade-in animation**/
+@media (max-width: 500px) {
 
-@keyframes fade-in {
-    from {opacity: 0; transform: scale(.7,.7)}
-    to {opacity: 1;}
-}
-.fade-in-element {
-  animation: fade-in 1.4s;
-}
+  .div-2 {
+    font-size: 1.2rem;
+  }
 
-.hiding {
-  opacity: 0;
+  .spark-circle {
+    font-size: 1.1rem;
+    width: 210px;
+    height: 210px;
+    padding: 40px;
+    margin-bottom: 60px;
+  }
+
+  .subheading {
+    position: static;
+    writing-mode: horizontal-tb;
+  }
+
+  .circle-2 {
+    font-size: 1.2rem;
+    height: 270px;
+    width: 285px;
+    padding: 0;
+    padding: 45px 60px 75px;
+    right: 0;
+  }
 }
